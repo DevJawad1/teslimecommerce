@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .brod{
+            height: 85vh;
+            display: grid;
+        }
+       
+        .signwit{
+            width: 120px;
+        }
+    </style>
+    <div class="brod mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 text-center shadow-lg mx-auto">
+                    <h4 style="text-align: center;">Sign-Up</h4>
+                    <input type="text" id="fn" class="form-control my-2 "  placeholder="First Name">
+                    <input type="text" id="ln" class="form-control my-2"  placeholder="Last Name">
+                    <input type="text" id="pn" class="form-control my-2"  placeholder="Phone Number">
+                    <input type="text" id="ps" class="form-control my-2"  placeholder="Password">
+                    <button onclick="signup()" class="signwit btn btn-success my-2 form-control" id="sp">Sign Up</button>
+                    <div>
+                       <a href="signin.html"><br> Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var client = []
+        if(localStorage.localclient){
+                client = JSON.parse(localStorage.getItem("localclient")) 
+            }
+        function signup(){
+            if(fn.value == "" || ln.value == "" || pn.value == "" || ps.value == ""){
+            sp.innerHTML = "Incorrect>>>" 
+            setTimeout((signup) => {
+            sp.innerHTML = "Sign Up"  
+           }, 4000);  
+            }
+            else{
+                sp.innerHTML = "loading>>>" 
+                setTimeout((signup) => {
+                sp.innerHTML = "Sign Up"  
+               }, 4000);
+            }
+
+           if(fn.value == "" || ln.value == "" || pn.value == "" || ps.value == ""){
+            alert("Fill In Correctly")
+           }
+           else{
+            var allclient = {
+                firstname : fn.value,
+                lastname : ln.value,
+                phonenumber : pn.value,
+                password : ps.value,
+            }
+            client.push(allclient)
+            console.log(client);
+      var getAllcart = JSON.parse(localStorage.getItem('allcart'))
+            localStorage.setItem("localclient", JSON.stringify(client))
+            window.location.href = "signin.html"
+           }
+        }
+    </script>
+</body>
+</html>
